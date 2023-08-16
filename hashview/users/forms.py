@@ -12,6 +12,7 @@ class UsersForm(FlaskForm):
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
     pushover_app_id = StringField('Pushover App Token (optional)')
     pushover_user_key = StringField('Pushover User Key (optional)')
+    pushover_sound = StringField('Pushover Custom Sound (optional)')
     submit = SubmitField('Register')
 
     def validate_email(self, email):
@@ -36,6 +37,7 @@ class ProfileForm(FlaskForm):
     last_name = StringField('Last Name', validators=[DataRequired(), Length(min=1, max=20)])
     pushover_user_key = StringField('Pushover User Key (optional)')
     pushover_app_id = StringField('Pushover App Id (optional)')
+    pushover_sound = StringField('Pushover Custom Sound (optional)')
     submit = SubmitField('Update')
 
 class RequestResetForm(FlaskForm):

@@ -93,7 +93,24 @@ Edit your profile.
                             {{ form.pushover_app_id(class="form-control form-control-lg") }}
                         {% endif %}
                     {% endif %}
-                </div>                
+                </div>
+                <div class="form-group">
+                    {{ form.pushover_sound.label(class="form-control-label") }}
+                    {% if form.pushover_sound.errors %}
+                        {{ form.pushover_sound(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.pushover_sound.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {% if current_user.pushover_sound %}
+                            {{ form.pushover_sound(class="form-control form-control-lg", placeholder="Pushover Custom Sound") }}
+                        {% else %}
+                            {{ form.pushover_sound(class="form-control form-control-lg") }}
+                        {% endif %}
+                    {% endif %}
+                </div>                  
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-primary pull-right") }}

@@ -53,7 +53,7 @@ def send_html_email(user, subject, message):
     msg.html = message
     current_app.extensions['mail'].send(msg)
 
-def send_pushover(user, subject, message):
+def send_pushover(user, subject, message, sound):
     if not user.pushover_user_key:
         current_app.logger.info('SendPushover is Complete with Failure(User Key not Configured).')
         return
@@ -68,6 +68,7 @@ def send_pushover(user, subject, message):
         user    = user.pushover_user_key,
         message = message,
         title   = subject,
+        sound   = sound,
     )
     response = requests.post('https://api.pushover.net/1/messages.json', params=payload)
     response_json = response.json()
